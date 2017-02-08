@@ -1,0 +1,281 @@
+\documentclass{report}
+
+%% Language and font encodings
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+
+%% Sets page size and margins
+\usepackage[a4paper,top=3cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+%% Useful packages
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage{url}
+\usepackage{todonotes}
+
+\newtheorem{thm}{Theorem}
+\newtheorem{defn}{Definition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{cor}{Corollary}
+\newtheorem{prop}{Proposition}
+\newtheorem{remark}{Remark}
+\newtheorem{claim}{Claim}
+\newtheorem{property}{Property}
+
+\newcommand{\reals}{\mathbb{R}}
+\newcommand{\naturals}{\mathbb{N}}
+\newcommand{\integers}{\mathbb{Z}}
+\newcommand{\Expect}{\mathbb{E}}
+\newcommand{\expect}[1]{\mathbb{E}\left[#1\right]}
+\newcommand{\Prob}{\mathbb{P}}
+\newcommand{\prob}[1]{\mathbb{P}\left[#1\right]}
+\newcommand{\pprob}[1]{\mathbb{P}[#1]}
+\newcommand{\eg}{e.g.\xspace}
+\newcommand{\ie}{i.e.\xspace}
+\newcommand{\iid}{i.i.d.\xspace}
+\newcommand{\pth}[1]{\left( #1 \right)}
+\newcommand{\qth}[1]{\left[ #1 \right]}
+\newcommand{\sth}[1]{\left\{ #1 \right\}}
+\newcommand{\bpth}[1]{\Bigg( #1 \Bigg)}
+\newcommand{\bqth}[1]{\Bigg[ #1 \Bigg]}
+\newcommand{\bsth}[1]{\Bigg\{ #1 \Bigg\}}
+\newcommand{\toprob}{{\xrightarrow{\Prob}}}
+\newcommand{\tolp}[1]{{\xrightarrow{L^{#1}}}}
+\newcommand{\toas}{{\xrightarrow{{\rm a.s.}}}}
+\newcommand{\toae}{{\xrightarrow{{\rm a.e.}}}}
+\newcommand{\todistr}{{\xrightarrow{{\rm D}}}}
+\newcommand{\eqdistr}{{\stackrel{\rm D}{=}}}
+\newcommand{\iiddistr}{{\overset{\text{\iid}}{\sim}}}
+\newcommand{\inddistr}{{\overset{\text{ind}}{\sim}}}
+\newcommand{\var}{\mathsf{var}}
+\newcommand\indep{\protect\mathpalette{\protect\independenT}{\perp}}
+\def\independenT#1#2{\mathrel{\rlap{$#1#2$}\mkern2mu{#1#2}}}
+\newcommand{\Bern}{\text{Bern}}
+\newcommand{\iprod}[2]{\left \langle #1, #2 \right\rangle}
+\newcommand{\Iprod}[2]{\langle #1, #2 \rangle}
+%\newcommand{\indc}[1]{{\mathbf{1}_{\left\{{#1}\right\}}}}
+\newcommand{\indc}[1]{{\mathbf{1}\left\{{#1}\right\}}}
+\newcommand{\iindc}[1]{{\mathbf{1}{\{{#1}\}}}}
+\newcommand{\Indc}{\mathbf{1}}
+\newcommand{\Th}{{^{\rm th}}}
+\newcommand{\diverge}{\to \infty}
+\newcommand{\calA}{{\mathcal{A}}}
+\newcommand{\calB}{{\mathcal{B}}}
+\newcommand{\calC}{{\mathcal{C}}}
+\newcommand{\calD}{{\mathcal{D}}}
+\newcommand{\calE}{{\mathcal{E}}}
+\newcommand{\calF}{{\mathcal{F}}}
+\newcommand{\calG}{{\mathcal{G}}}
+\newcommand{\calH}{{\mathcal{H}}}
+\newcommand{\calI}{{\mathcal{I}}}
+\newcommand{\calJ}{{\mathcal{J}}}
+\newcommand{\calK}{{\mathcal{K}}}
+\newcommand{\calL}{{\mathcal{L}}}
+\newcommand{\calM}{{\mathcal{M}}}
+\newcommand{\calN}{{\mathcal{N}}}
+\newcommand{\calO}{{\mathcal{O}}}
+\newcommand{\calP}{{\mathcal{P}}}
+\newcommand{\calQ}{{\mathcal{Q}}}
+\newcommand{\calR}{{\mathcal{R}}}
+\newcommand{\calS}{{\mathcal{S}}}
+\newcommand{\calT}{{\mathcal{T}}}
+\newcommand{\calU}{{\mathcal{U}}}
+\newcommand{\calV}{{\mathcal{V}}}
+\newcommand{\calW}{{\mathcal{W}}}
+\newcommand{\calX}{{\mathcal{X}}}
+\newcommand{\calY}{{\mathcal{Y}}}
+\newcommand{\calZ}{{\mathcal{Z}}}
+
+\newcommand{\tb}[1]{{\textbf{#1}}}
+\newcommand{\mb}[1]{{\mathbb{#1}}}
+
+\newcommand{\bern}[1]{\mathop{\text{Bern}}(#1)}
+\newcommand{\ind}[1]{\textbf{1}_{(#1)}}
+\newcommand{\set}[1]{\big\lbrace #1 \big\rbrace}
+\newcommand{\union}{\bigcup}
+%\newcommand{\sup}{\mathop{\text{sup}}}
+%\newcommand{\inf}{\mathop{\text{inf}}}
+%\newcommand{\limsup}{\mathop{\text{lim sup}}}
+%\newcommand{\liminf}{\mathop{\text{lim inf}}}
+
+
+\title{Theorems, Lemmas, Properties: Real Analysis and Measure Theory}
+\author{Adarsh}
+\date{Ref: Real Analysis 3: Stein-Shakarachi}
+
+\begin{document}
+\maketitle
+
+\chapter{MEASURE THEORY}
+\section{Basic Definitions}
+\begin{defn}[Open Ball]
+	The open ball in $\reals^d$ centered at $x$ and of radius $r$ is defined by
+	$$B_r(x) = \set{y \in \reals^d : | y - x | < r}$$
+\end{defn}
+\begin{defn}[Open Set and Closed Set]
+	A subset $E \subset \reals^d$ is open if for every $x \in E$ there exists $r > 0$ with
+	$B_r(x) \subset E$. By definition, a set is closed if its complement is open. 
+	\begin{itemize}
+		\item Any (not necessarily countable) union of open sets is open
+		\item The intersection of finitely many open sets is open
+		\item Any (not necessarily countable) intersection of close sets is closed
+		\item The union of finitely many close sets is close
+	\end{itemize}
+\end{defn}
+\begin{defn}[Bounded Set and Compact Set]
+	A set $E$ is bounded if it is contained in some ball of finite radius.	A bounded set is compact if it is also closed.
+\end{defn}
+\begin{property}[Heine-Borel covering property]
+	Any covering of a compact set by a collection of open sets contains a finite subcovering.
+\end{property}
+\begin{defn}[Limit Point]
+	A point $x \in \reals^d$ is a limit point of the set $E$ if for every $r > 0$, the ball
+	$B_r(x)$ contains points of $E$.
+\end{defn}
+\begin{defn}[Isolated Point]
+	An isolated point of $E$ is a point $x \in E$ such that there exists an $r > 0$ where $B_r(x) \backslash E$ is equal to $x$.
+\end{defn}
+\begin{defn}[Interior]
+	A point $x \in E$ is an interior point of $E$ if there exists $r > 0$ such that $B_r(x) \subset E$. The set of all interior points of $E$ is called the interior of E.
+\end{defn}
+\begin{defn}[Closure]
+	The closure $\bar{E}$ of the $E$ consists of the union of $E$ and all
+	its limit points.
+\end{defn}
+\begin{defn}[Boundary]
+	The boundary of a set $E$, denoted by $\delta E$, is the set of	points which are in the closure of $E$ but not in the interior of $E$.
+\end{defn}
+\begin{property}\item
+	\begin{itemize}
+		\item The closure of a set is a closed set.
+		\item Every point in $E$ is a limit point of $E$.
+		\item A set is closed if and only if it contains all its limit points.
+	\end{itemize}
+\end{property}
+\begin{defn}[Perfect Set]
+	A closed set $E$ is perfect if $E$ does not have any isolated points.
+\end{defn}
+
+\begin{defn}[Rectangle]
+	A (closed) rectangle $R$ in $\reals^d$ is given by the product of $d$ one-dimensional
+	closed and bounded intervals,
+	$$R = [a_1, b_1] \times [a_2, b_2] \times \dots \times [a_d, b_d]$$
+	where $a_j$, $b_j$ are real numbers, $j = 1, 2, \dots, d$. If all intervals are equal then it is a cube.
+\end{defn}
+
+\begin{lemma}
+	If a rectangle is the almost disjoint (interior disjoint) union of finitely many other rectangles, say $R = \union_{k=1}^N R_k $ then $|R| = \sum_{k=1}^{N} |R_k|$.
+\end{lemma}
+
+\begin{lemma}
+	If $R, R_1, \dots,R_N$ are rectangles, and $R \subset \union_{k=1}^{N} R_k $ then$|R| \leq \sum_{k=1}^{N} |R_k|$.
+\end{lemma}
+
+\begin{thm}
+	Every open subset $O$ of $\reals$ can be written uniquely as a countable union of disjoint open intervals. In general, this is not true for $\reals^d, d > 1$.
+\end{thm}
+
+\begin{thm}
+	Every open subset $O$ of $\reals^d, d \geq 1$, can be written as a countable union of almost disjoint closed rectangles (cubes).
+\end{thm}
+\todo[inline]{Need to add more}
+%%% NEW SECTION
+\section{Measurable Sets and Lebesgue Measure}
+\begin{defn}[$\sigma$-algebra]
+	A $\sigma$-algebra of sets is a collection of subsets of $\reals^d$ that is closed under countable unions, countable intersections, and complements. Example: Collection of all subsets of $\reals^d$, collection of all measurable sets of $\reals^d$
+\end{defn}
+\begin{defn}[Borel $\sigma$-algebra and Borel sets]
+	A set $E \subseteq \reals^d $ is an $F_\sigma$ set provided that it is the countable union of closed	sets and is a $G_\delta$ set if it is the countable intersection of open sets.The smallest $\sigma$-algebra that contains all open sets. Elements of this $\sigma$-algebra are called	Borel sets.
+\end{defn}
+\section{Measurable Functions}
+\begin{defn}[Characteristic Function]
+	A characteristic function of a set $E$ is defined by 
+	$$
+	 \chi_E(x) = \begin{cases}
+	1,\ if\ x \in E \\
+	0,\ if\ x \notin E.
+	\end{cases}
+	$$
+\end{defn}
+\begin{defn}[Step Function]
+	Step functions are defined as finite sum, $ f = \sum_{k=1}^{N} a_k \chi_{R_k} $, where each $R_k$ is a rectangle and each $a_k$ is a constant. These are used in Reimann integral.
+\end{defn}
+\begin{defn}[Simple Function]
+	A simple function is a finite sum,  $ f = \sum_{k=1}^{N} a_k \chi_{E_k} $, where each $E_k$ is a measurable set of finite measure, and the $a_k$ are constants. These are used in Lebesgue integral.
+\end{defn}
+
+\begin{defn}[Measurable Function]
+	A function $f$ defined on a measurable subset E of $\reals^d$ is measurable,
+	if for all $ a \in \reals$, the set
+	$$f^{-1}(\big[-\infty, a\big)) = \set{x \in E: f(x) < a} = \set{f < a}$$ is measurable. Equivalently, $\set{f \leq a}, \set{f > a}, \set{f \geq a}$ are measurable. If $f$ is finite valued then $\set{a < f < b}$ is measurable (with any combinations of $\leq, \geq$).
+\end{defn} 
+\begin{property}
+	The finite-valued function $f$ is measurable if and only if $f^{-1}(O)$ is measurable for every open set $O$, and if and only if $f^{-1}(F)$ is measurable for every closed set $F$.
+\end{property}
+\begin{property}
+	If $f$ is continuous on $\reals^d$, then $f$ is measurable. If $f$ is measurable and finite-valued, and $\phi$ is continuous, then  $\phi \circ f$ is measurable. But $f \circ \phi$ may not.
+\end{property}
+\begin{property}
+	Suppose $\set{f_n}_{n=1}^\infty$ is a sequence of measurable functions. Then $$\sup_n f_n(x), \inf_n f_n(x), \limsup_{n \rightarrow \infty} f_n(x), \liminf_{n \rightarrow \infty} f_n(x)  $$ are measurable.
+\end{property}
+\begin{property}
+	Suppose $\set{f_n}_{n=1}^\infty$ is a sequence of measurable functions. Then $$\lim_{n \rightarrow \infty} f_n(x) = f(x) $$ then $f$ is measurable.
+\end{property}
+\begin{property}
+	If $f$ and $g$ are measurable, then,
+	\begin{itemize}
+		\item The integer powers $f^k, k \geq 1$ are measurable.
+		\item $f + g$ and $fg$ are measurable if both $f$ and $g$ are finite-valued.
+	\end{itemize}
+\end{property}
+
+\begin{defn}[Almost Everywhere]
+	We shall say that two functions $f$ and $g$ defined on a set $E$ are equal almost everywhere, and write,
+	$$ f(x) = g(x)\ a.e.\ x \in E,$$
+	if the set $\set{x \in E : f(x) \neq g(x)}$ has measure zero. All the properties above can be relaxed to conditions holding almost everywhere.
+\end{defn}
+
+\begin{property}
+	Suppose $f$ is measurable, and $f(x) = g(x)$ for a.e. $x$. Then $g$ is measurable.
+\end{property}
+
+\begin{thm}
+	Suppose $f$ is a non-negative measurable function on $\reals^d$. Then there exists an increasing sequence of non-negative simple functions $\set{\phi}_{k=1}^{\infty} $ that converges pointwise to $f$, namely,
+	$$ \phi_k (x) \leq \phi_{k+1} (x)\ and\ \lim_{k \rightarrow \infty} = f(x)\ \forall\ x.$$
+\end{thm}
+
+\begin{thm}
+	Suppose $f$ is a measurable function on $\reals^d$. Then there exists a sequence of simple functions $\set{\phi}_{k=1}^{\infty} $ that satisfies,
+	$$ |\phi_k (x)| \leq |\phi_{k+1} (x)| \ and\ \lim_{k \rightarrow \infty} = f(x)\ \forall\ x.$$
+\end{thm}
+
+\begin{thm}
+	Suppose $f$ is measurable on $\reals^d$. Then there exists a sequence of step functions $\set{\psi}_{k=0}^\infty$ that converges pointwise to $f(x)$ for almost every $x$.
+\end{thm}
+
+\begin{thm}[Egorov]
+	Suppose $\set{f_k}_{k=1}^\infty$ is a sequence of measurable functions defined on a measurable set $E$ with $m(E) < \infty $, and assume that $f_k \rightarrow f$ a.e on $E$. Given $\epsilon > 0 $, we can find a closed set $A_\epsilon \subset E$ such that $m(E - A_\epsilon) \leq \epsilon$ and $f_k \rightarrow f$ uniformly on $A_\epsilon$.
+\end{thm}
+
+\begin{thm}[Lusin]
+	Suppose $f$ is measurable and finite valued on $E$ with $E$ of finite measure. Then for every $\epsilon > 0$ there exists a closed set $F_\epsilon$, with
+	$$F_\epsilon \subset E\ and\ m(E - F_\epsilon) \leq \epsilon$$
+	and such that $f|_{F_\epsilon}$ is continuous.
+\end{thm}
+
+\chapter{INTEGRATION THEORY}
+\begin{defn}[Canonical Form of Simple Function]
+	The canonical form of a simple function $\phi$ is the unique decomposition as below,
+	$$  \phi = \sum_{k=1}^{M} c_k \chi_{F_k}  $$
+	 where the numbers $c_k$ are distinct and non-zero, and the sets $F_k$ are disjoint.
+\end{defn}
+\begin{property}
+	If $\phi$ is a simple function with canonical form $  \phi = \sum_{k=1}^{M} c_k \chi_{F_k}  $, then we define the Lebesgue integral of $\phi$ by $\int_{\reals^d}^{} \phi(x) dx = \sum_{k=1}^{M} c_k m(Fk)$.
+\end{property}
+
+\end{document}
