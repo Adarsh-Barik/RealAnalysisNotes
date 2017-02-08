@@ -244,6 +244,14 @@
 	Suppose $f$ is measurable, and $f(x) = g(x)$ for a.e. $x$. Then $g$ is measurable.
 \end{property}
 
+\begin{defn}[Pointwise Convergence of a Function]
+	Let $E \subset \reals^d$ and let $\set{f_n}_{n=1}^{\infty}$ be a sequence of real valued functions defined on $E$. Then $\set{f_n}_{n=1}^\infty$ converges pointwise to $f$ if given any $x$ in $E$ and	given any $\epsilon > 0$, there exists a natural number $N(x, \epsilon)$ such that $|f_n(x) - f(x)| < \epsilon$ for every $n > N(x, \epsilon)$.
+\end{defn}
+
+\begin{defn}[Uniform Convergence of a Function]
+	Let $E \subset \reals^d$ and let $\set{f_n}_{n=1}^{\infty}$ be a sequence of real valued functions defined on $E$. Then $\set{f_n}_{n=1}^\infty$ converges uniformly to $f$ if given any $\epsilon > 0$, there exists a natural number $N(\epsilon)$ such that $|f_n(x) - f(x)| < \epsilon$ for every $n > N(\epsilon)$ for every $x \in E$.
+\end{defn}
+
 \begin{thm}
 	Suppose $f$ is a non-negative measurable function on $\reals^d$. Then there exists an increasing sequence of non-negative simple functions $\set{\phi}_{k=1}^{\infty} $ that converges pointwise to $f$, namely,
 	$$ \phi_k (x) \leq \phi_{k+1} (x)\ and\ \lim_{k \rightarrow \infty} = f(x)\ \forall\ x.$$
