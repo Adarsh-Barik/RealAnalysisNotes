@@ -18,6 +18,17 @@
 \usepackage{url}
 \usepackage{todonotes}
 
+\newtheoremstyle{upthm}%
+{3pt}%
+{3pt}%
+{\upshape}%
+{}%
+{\bfseries}%
+{:}%
+{.5em}%
+{\thmname{#1}\thmnumber{ #2}\thmnote{ (#3)}}%
+
+\theoremstyle{upthm}
 \newtheorem{thm}{Theorem}
 \newtheorem{defn}{Definition}
 \newtheorem{lemma}{Lemma}
