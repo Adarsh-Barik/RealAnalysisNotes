@@ -98,6 +98,8 @@
 \newcommand{\ind}[1]{\textbf{1}_{(#1)}}
 \newcommand{\set}[1]{\big\lbrace #1 \big\rbrace}
 \newcommand{\union}{\bigcup}
+\newcommand{\vl}{\Big|}
+\newcommand{\intersection}{\bigcap}
 %\newcommand{\sup}{\mathop{\text{sup}}}
 %\newcommand{\inf}{\mathop{\text{inf}}}
 %\newcommand{\limsup}{\mathop{\text{lim sup}}}
@@ -183,6 +185,65 @@
 \begin{thm}
 	Every open subset $O$ of $\reals^d, d \geq 1$, can be written as a countable union of almost disjoint closed rectangles (cubes).
 \end{thm}
+
+\begin{defn}[\tb{The Cantor Set}]
+	Let $C_0 = [0, 1]$ and we get $C_k$ by dividing each disjoint interval of $C_{k-1}$ in three equal parts and deleting the middle part (end points are included in the set), then the Cantor set is defined as,
+	$$ \calC =  \intersection_{k=0}^{\infty} C_k$$
+\end{defn}
+\begin{property}\item
+	\begin{itemize}
+		\item $C_0 \supset C_1 \supset C_2 \dots \supset C_k \supset C_{k+1} \dots$.
+		\item $\calC$ is closed and	bounded, hence compact. 
+		\item $\calC$ is totally disconnected: given any $x, y \in \calC$ there exists $z \notin \calC$ that lies between $x$ and $y$. 
+		\item $\calC$ is perfect: it has no isolated points and it is closed.
+		\item $\calC$ is not countable: maps to power set of $\naturals$
+		\item $\calC$ has measure 0.
+		\item $x \in \calC \iff x = \sum_{k=0}^{\infty} a_k 3^{-k}, a_k \in \set{0, 2}$ 
+	\end{itemize}
+\end{property}
+
+%%% NEW SECTION
+\section{The Outer (Exterior) Measure}
+
+\begin{defn}[Outer Measure]
+	If $E$ is any subset of $\reals^d$, the	outer measure of $E$ is,
+	$$m_{*}(E) = \inf \sum_{k=1}^{\infty} \vl R_k \vl $$
+	where $\inf$ is taken over all countable coverings $E \subset \union_{k=1}^{\infty} R_k$ by closed rectangles (cubes). Note that $0 \leq m_*(E) \leq \infty$.
+\end{defn}
+
+\begin{property}
+	The outer measure of a point is zero.
+\end{property}
+\begin{property}
+	The outer measure of a closed rectangle (open rectangle) is equal to its volume.
+\end{property}
+\begin{property}
+	The outer measure of $\reals^d$ is infinite.
+\end{property}
+\begin{property}
+	For every $\epsilon > 0$, there exists a covering $E \subset \union_{j=1}^{\infty} R_j$  with
+	$$ \sum_{j=1}^{\infty} m_*(R_j) \leq m_*(E) + \epsilon $$
+\end{property}
+\begin{property}[\tb{Monotonicity}]
+	If $E_1 \subset E_2$, then $m_*(E1) \leq m_*(E_2)$.
+\end{property}
+
+\begin{property}[\tb{Countable Sub-additivity}]
+	If $E = \union_{j=1}^{\infty} E_j $, then $ m_*(E) \leq \sum_{j=1}^{\infty} m_*(E_j)$.
+\end{property}
+
+\begin{property}
+	If $E \in \reals^d$, then $m_*(E) = \inf m_*(\calO)$, where the $\inf$ is taken over all open sets $\calO$ containing $E$.
+\end{property}
+
+\begin{property}
+	If $E = E_1 \union E_2$ and $d(E_1, E_2) > 0$ then, $m_*(E) = m_*(E_1) + m_*(E_2)$ where $d(E_1, E_2) = \inf_{x \in E_1, y \in E_2} \vl x - y \vl$. 
+\end{property}
+
+\begin{property}
+	If a set $E$ is the countable union of almost disjoint rectangles $ E = \union_{k=1}^{\infty} R_k $, then $m_*(E) = \sum_{k=1}^{\infty} \vl R_k \vl$
+\end{property}
+
 \todo[inline]{Need to add more}
 %%% NEW SECTION
 \section{Measurable Sets and Lebesgue Measure}
@@ -285,5 +346,27 @@
 \begin{property}
 	If $\phi$ is a simple function with canonical form $  \phi = \sum_{k=1}^{M} c_k \chi_{F_k}  $, then we define the Lebesgue integral of $\phi$ by $\int_{\reals^d}^{} \phi(x) dx = \sum_{k=1}^{M} c_k m(Fk)$.
 \end{property}
+\begin{property}
+	If $E$ is a measurable subset of $\reals^d$ with finite measure, then $ \phi(x) \chi_E(x)$
+	is also a simple function, and we define,
+	$$ \int_{E} \phi(x) dx = \int \phi(x) \chi_E(x) dx $$
+	where second integral is over $\reals^d$.
+\end{property}
+
+\begin{prop}
+	The integral of simple functions defined above satisfies the following properties:
+	\begin{itemize}
+		\item Independence of the representation. If $ \phi = \sum_{k=1}^{N} a_k \chi_{E_k}$ is any representation of $\phi$, then
+		$$ \int \phi = \sum_{k=1}^{N} a_k m(E_k) $$.
+		\item Linearity. If $\phi$ and $\psi$ are simple, and $a, b \in \reals$, then
+		$$\int (a \phi + b \psi) = a \int \phi + b \int \psi $$
+		\item Additivity. If $E$ and $F$ are disjoint subsets of $\reals^d$ with finite measure, then
+		$$ \int_{E \union F} \phi = \int_{E} \phi + \int_{F} \phi $$
+		\item Monotonicity. If $\phi  \leq \psi$ are simple, then
+		$$ \int \phi \leq \int \psi$$
+		\item Triangle inequality. If $\phi$ is a simple function, then so is $|\phi|$, and
+		$$ \vl \int \phi \vl \leq \int \vl \phi \vl  $$
+	\end{itemize}
+\end{prop}
 
 \end{document}
