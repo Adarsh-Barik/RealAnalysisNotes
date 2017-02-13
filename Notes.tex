@@ -111,7 +111,7 @@
 \newcommand{\union}{\bigcup}
 \newcommand{\vl}{\Big|}
 \newcommand{\intersection}{\bigcap}
-%\newcommand{\sup}{\mathop{\text{sup}}}
+\newcommand{\supp}{\mathop{\text{supp}}}
 %\newcommand{\inf}{\mathop{\text{inf}}}
 %\newcommand{\limsup}{\mathop{\text{lim sup}}}
 %\newcommand{\liminf}{\mathop{\text{lim inf}}}
@@ -255,9 +255,55 @@
 	If a set $E$ is the countable union of almost disjoint rectangles $ E = \union_{k=1}^{\infty} R_k $, then $m_*(E) = \sum_{k=1}^{\infty} \vl R_k \vl$
 \end{property}
 
-\todo[inline]{Need to add more}
+\begin{remark}
+	Despite above two properties, in general it is {\bf NOT TRUE} that if $E_1 \union E_2$ is a disjoint union of subsets of $\reals^d$, then
+	$$ m_*(E_1 \union E_2) = m_*(E_1) + m_*(E_2) .$$
+\end{remark}
+
 %%% NEW SECTION
 \section{Measurable Sets and Lebesgue Measure}
+
+\begin{defn}[Lebesgue Measurable]
+	A subset $E$ of $\reals^d$ is Lebesgue measurable, or simply measurable, if for any $ \epsilon > 0$ there exists an open set $\calO$ with $E \subset \calO$ and $m_*(\calO - E) \leq \epsilon$. If $E$ is measurable, we define its Lebesgue measure (or measure) $m(E)$ by $m(E) = m_*(E)$.
+\end{defn}
+
+\begin{property}
+	Every open set in $\reals^d$ is measurable.
+\end{property}
+
+\begin{property}
+	If $m_*(E) = 0$, then $E$ is measurable. In particular, if $F$ is a subset of a set of exterior measure $0$, then $F$ is measurable.
+\end{property}
+
+\begin{property}
+	A countable union of measurable sets is measurable.
+\end{property}
+
+\begin{property}
+	Closed sets are measurable.
+\end{property}
+
+\begin{lemma}
+	If $F$ is closed, $K$ is compact, and these sets are disjoint, then $d(F,K) > 0$.
+\end{lemma}
+
+\begin{property}
+	The complement of a measurable set is measurable.
+\end{property}
+
+\begin{property}
+	A countable intersection of measurable sets is measurable.
+\end{property}
+
+\begin{remark}
+	The operations of uncountable unions or intersections are not permissible when dealing with measurable sets!
+\end{remark}
+
+\begin{thm}
+	If $E_1, E_2, \dots$ are disjoint measurable sets, and $E = \union_{j=1}^{\infty} E_j$, then $m(E) = \sum_{j=1}^{\infty} m(E_j)$.
+\end{thm}
+
+\todo[inline]{Need to add more}
 \begin{defn}[$\sigma$-algebra]
 	A $\sigma$-algebra of sets is a collection of subsets of $\reals^d$ that is closed under countable unions, countable intersections, and complements. Example: Collection of all subsets of $\reals^d$, collection of all measurable sets of $\reals^d$
 \end{defn}
@@ -325,13 +371,13 @@
 \end{defn}
 
 \begin{thm}
-	Suppose $f$ is a non-negative measurable function on $\reals^d$. Then there exists an increasing sequence of non-negative simple functions $\set{\phi}_{k=1}^{\infty} $ that converges pointwise to $f$, namely,
-	$$ \phi_k (x) \leq \phi_{k+1} (x)\ and\ \lim_{k \rightarrow \infty} = f(x)\ \forall\ x.$$
+	Suppose $f$ is a non-negative measurable function on $\reals^d$. Then there exists an increasing sequence of non-negative simple functions $\set{\varphi}_{k=1}^{\infty} $ that converges pointwise to $f$, namely,
+	$$ \varphi_k (x) \leq \varphi_{k+1} (x)\ and\ \lim_{k \rightarrow \infty} = f(x)\ \forall\ x.$$
 \end{thm}
 
 \begin{thm}
-	Suppose $f$ is a measurable function on $\reals^d$. Then there exists a sequence of simple functions $\set{\phi}_{k=1}^{\infty} $ that satisfies,
-	$$ |\phi_k (x)| \leq |\phi_{k+1} (x)| \ and\ \lim_{k \rightarrow \infty} = f(x)\ \forall\ x.$$
+	Suppose $f$ is a measurable function on $\reals^d$. Then there exists a sequence of simple functions $\set{\varphi}_{k=1}^{\infty} $ that satisfies,
+	$$ |\varphi_k (x)| \leq |\varphi_{k+1} (x)| \ and\ \lim_{k \rightarrow \infty} = f(x)\ \forall\ x.$$
 \end{thm}
 
 \begin{thm}
@@ -350,34 +396,77 @@
 
 \chapter{INTEGRATION THEORY}
 \begin{defn}[Canonical Form of Simple Function]
-	The canonical form of a simple function $\phi$ is the unique decomposition as below,
-	$$  \phi = \sum_{k=1}^{M} c_k \chi_{F_k}  $$
+	The canonical form of a simple function $\varphi$ is the unique decomposition as below,
+	$$  \varphi = \sum_{k=1}^{M} c_k \chi_{F_k}  $$
 	 where the numbers $c_k$ are distinct and non-zero, and the sets $F_k$ are disjoint.
 \end{defn}
 \begin{property}
-	If $\phi$ is a simple function with canonical form $  \phi = \sum_{k=1}^{M} c_k \chi_{F_k}  $, then we define the Lebesgue integral of $\phi$ by $\int_{\reals^d}^{} \phi(x) dx = \sum_{k=1}^{M} c_k m(Fk)$.
+	If $\varphi$ is a simple function with canonical form $  \varphi = \sum_{k=1}^{M} c_k \chi_{F_k}  $, then we define the Lebesgue integral of $\varphi$ by $\int_{\reals^d}^{} \varphi(x) dx = \sum_{k=1}^{M} c_k m(Fk)$.
 \end{property}
 \begin{property}
-	If $E$ is a measurable subset of $\reals^d$ with finite measure, then $ \phi(x) \chi_E(x)$
+	If $E$ is a measurable subset of $\reals^d$ with finite measure, then $ \varphi(x) \chi_E(x)$
 	is also a simple function, and we define,
-	$$ \int_{E} \phi(x) dx = \int \phi(x) \chi_E(x) dx $$
+	$$ \int_{E} \varphi(x) dx = \int \varphi(x) \chi_E(x) dx $$
 	where second integral is over $\reals^d$.
 \end{property}
 
 \begin{prop}
 	The integral of simple functions defined above satisfies the following properties:
 	\begin{itemize}
-		\item Independence of the representation. If $ \phi = \sum_{k=1}^{N} a_k \chi_{E_k}$ is any representation of $\phi$, then
-		$$ \int \phi = \sum_{k=1}^{N} a_k m(E_k) $$.
-		\item Linearity. If $\phi$ and $\psi$ are simple, and $a, b \in \reals$, then
-		$$\int (a \phi + b \psi) = a \int \phi + b \int \psi $$
-		\item Additivity. If $E$ and $F$ are disjoint subsets of $\reals^d$ with finite measure, then
-		$$ \int_{E \union F} \phi = \int_{E} \phi + \int_{F} \phi $$
-		\item Monotonicity. If $\phi  \leq \psi$ are simple, then
-		$$ \int \phi \leq \int \psi$$
-		\item Triangle inequality. If $\phi$ is a simple function, then so is $|\phi|$, and
-		$$ \vl \int \phi \vl \leq \int \vl \phi \vl  $$
+		\item Independence of the representation. If $ \varphi = \sum_{k=1}^{N} a_k \chi_{E_k}$ is any representation of $\varphi$, then $ \int \varphi = \sum_{k=1}^{N} a_k m(E_k) $.
+		\item Linearity. If $\varphi$ and $\psi$ are simple, and $a, b \in \reals$, then $\int (a \varphi + b \psi) = a \int \varphi + b \int \psi $
+		\item Additivity. If $E$ and $F$ are disjoint subsets of $\reals^d$ with finite measure, then $ \int_{E \union F} \varphi = \int_{E} \varphi + \int_{F} \varphi $
+		\item Monotonicity. If $\varphi  \leq \psi$ are simple, then $ \int \varphi \leq \int \psi$
+		\item Triangle inequality. If $\varphi$ is a simple function, then so is $|\varphi|$, and $ \vl \int \varphi \vl \leq \int | \varphi |  $
 	\end{itemize}
 \end{prop}
+
+\begin{defn}[Support of a Function]
+	Support is defined as $\supp(f) = \set{x : f(x) \neq 0} $. We shall say that $f$ is supported on a set $E$, if $f(x) = 0$ whenever $x \notin E$.
+\end{defn}
+
+\begin{lemma}
+	Let $f$ be a bounded function supported on a set $E$ of finite measure. If $\set{\varphi_n}_{n=1}^\infty$ is any sequence of simple functions bounded by $M$, supported on $E$, and with $ \varphi_n(x) \rightarrow f(x)$ for a.e. $x$, then:
+	\begin{itemize}
+		\item The limit $\lim_{n \rightarrow \infty} \int \varphi_n$ exists.
+		\item If $f = 0$ a.e., then the limit $\lim_{n \rightarrow \infty} \int \varphi_n$ equals to $0$.
+	\end{itemize}
+\end{lemma}
+
+\begin{defn}[Lebesgue Integral of Bounded Functions Supported on Sets of Finite Measure]
+For such a function $f$, we define its Lebesgue Integral by,
+$$ \int f(x) dx = \lim_{n \rightarrow \infty} \int \varphi_n(x) dx $$
+where $\set{\varphi_n}$ is {\bf any} sequence of simple functions satisfying: $| \varphi_n | \leq M$, each $\varphi_n$ is supported on the support of $f$, and $\varphi_n(x) \rightarrow f(x)$ for a.e. $x$ as $n$ tends to infinity.  
+\end{defn}
+
+\begin{property}
+	If $E$ is a subset of $\reals^d$ with finite measure, and $f$ is bounded with $m(supp(f)) < \infty$, then:
+	$$ \int_E f(x) dx = \int f(x) \chi_E(x) dx $$
+\end{property}
+
+\begin{prop}
+	Suppose $f$ and $g$ are bounded functions supported on sets of finite measure. Then the following properties hold. 
+	\begin{itemize}
+		\item Linearity. If $a, b \in \reals$, then $\int (af + bg) = a \int f + b \int g$.
+		\item Additivity. If $E$ and $F$ are disjoint subsets of $\reals^d$, then $\int_{E \union F} f = \int_E f + \int_F f$.
+		\item Monotonicity. If $f \leq g$, then $\int f \leq \int g$.
+		\item Triangle Inequality. $|f|$ is also bounded, supported on a set of finite
+		measure, and $\vl \int f \vl \leq \int |f|$.
+	\end{itemize}
+\end{prop}
+
+\begin{thm}[Bounded convergence theorem]
+Suppose that $\set{f_n}$ is a sequence of measurable functions that are all bounded by $M$, are supported on a set $E$ of finite measure, and $f_n(x) \rightarrow f(x)$ a.e. $x$ as $n \rightarrow \infty$. Then $f$ is measurable, bounded, supported on $E$ for a.e. x, and
+$$ \int |f_n - f| \rightarrow 0,\ as\ n\rightarrow \infty. $$
+Consequently,
+$$ \int f_n \rightarrow \int f,\ as\ n \rightarrow \infty. $$	
+\end{thm}
+
+\begin{thm}
+	Suppose $f$ is Riemann integrable on the closed interval $[a, b]$. Then $f$ is measurable, and 
+	$$ \int_{[a, b]}^\calR f(x) dx  = \int_{[a, b]}^\calL f(x) dx ,$$
+	where the integral on the left-hand side is the standard Riemann integral, and that on the right-hand side is the Lebesgue integral. Note that if $f$ is Riemann integrable, then $f$ is bounded.
+\end{thm}
+
 
 \end{document}
