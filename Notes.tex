@@ -303,13 +303,72 @@
 	If $E_1, E_2, \dots$ are disjoint measurable sets, and $E = \union_{j=1}^{\infty} E_j$, then $m(E) = \sum_{j=1}^{\infty} m(E_j)$.
 \end{thm}
 
-\todo[inline]{Need to add more}
+\begin{defn}[$\bf E_k \nearrow E$]
+	If $E_1, E_2, \dots $ is a countable collection of subsets of $S \in \reals^d$ that increases to $E$ in the sense that $ E_1 \subseteq E_2 \subseteq \dots \subseteq E_k \subseteq E_{k+1} \subseteq \dots $  and $E = \union_{k=1}^{\infty} E_k$, then we write $E_k \nearrow E$.
+\end{defn}
+
+\begin{property} 
+	If $E_k \nearrow E$, then $m(E) = \lim_{k \rightarrow \infty} m(E_k)$
+\end{property}
+
+\begin{defn}[$\bf E_k \searrow E$]
+	If $E_1, E_2, \dots $ is a countable collection of subsets of $S \in \reals^d$ that decreases to $E$ in the sense that $ E_1 \supseteq E_2 \supseteq \dots \supseteq E_k \supseteq E_{k+1} \supseteq \dots $  and $E = \intersection_{k=1}^{\infty} E_k$, then we write $E_k \searrow E$.
+\end{defn}
+
+\begin{property} 
+	If $E_k \searrow E$ and $m(E_k) < \infty$ for some $k$, then $m(E) = \lim_{k \rightarrow \infty} m(E_k)$
+\end{property}
+
+\begin{thm}
+	Suppose $E$ is a measurable subset of $\reals^d$ . Then, for every $\epsilon > 0$:
+	\begin{itemize}
+		\item There exists an open set $\calO$ with $E \subset \calO$ and $m(\calO - E) \leq \epsilon$.
+		\item There exists a closed set $F$ with $F \subset E$ and $m(E - F ) \leq \epsilon$.
+		\item If $m(E)$ is finite, there exists a compact set $K$ with $K \subset E$ and $m(E - K) \leq \epsilon$.
+		\item If $m(E)$ is finite, there exists a finite union $F = \union_{j=1}^N R_j$ of closed rectangles (cubes) such that $m (E \triangle F) \leq \epsilon$, where symmetric difference $E \triangle F = (E - F) \union (F - E)$.
+	\end{itemize}
+\end{thm}
+
+\begin{property}[Invariance]
+	\item
+	\begin{itemize}
+		\item Translation Invariance. If $E$ is a measurable set and $h \in \reals^d$ , then the set $E_h = E + h = \set{x + h : x \in E}$ is also measurable, and $m(E + h) = m(E)$.
+		\item Dilation Invariance. If $E$ is a measurable set and $\delta > 0 \in \reals$ , then the set $\delta E = \set{\delta x : x \in E}$ is also measurable, and $m(\delta E) = \delta^d m(E)$.
+		\item Reflection Invariance. Whenever $E$ is measurable, so is $ -E = \set{-x : x \in E}$ and $m(-E) = m(E)$.
+	\end{itemize}
+\end{property}
+
+\begin{defn}[$\bf G_\delta$ set]
+	A $G_\delta$ set is, an intersection of a countable family of open sets.
+\end{defn}
+
+\begin{property}
+	A subset $E$ of $\reals^d$ is measurable if and only if $E$ differs from a $G_\delta$ by a set of measure zero.
+\end{property}
+
+\begin{defn}[$\bf F_\sigma$ set]
+	A $F_\sigma$ set is, a union of a countable family of closed sets.
+\end{defn}
+
+
+\begin{property}
+	A subset $E$ of $\reals^d$ is measurable if and only if $E$ differs from a $F_\sigma$ by a set of measure zero.
+\end{property}
+
 \begin{defn}[$\sigma$-algebra]
 	A $\sigma$-algebra of sets is a collection of subsets of $\reals^d$ that is closed under countable unions, countable intersections, and complements. Example: Collection of all subsets of $\reals^d$, collection of all measurable sets of $\reals^d$
 \end{defn}
 \begin{defn}[Borel $\sigma$-algebra and Borel sets]
 	A set $E \subseteq \reals^d $ is an $F_\sigma$ set provided that it is the countable union of closed	sets and is a $G_\delta$ set if it is the countable intersection of open sets.The smallest $\sigma$-algebra that contains all open sets. Elements of this $\sigma$-algebra are called	Borel sets.
 \end{defn}
+
+\begin{property}
+	$G_\delta$ and $F_\sigma$ are examples of Borel set.
+\end{property}
+
+\begin{remark}
+	Remember that it is possible to construct subsets of $\reals^d$ which are not measurbale. Check reference book for construction of a non-measurable set $\calN \subset \reals$. 
+\end{remark}
 \section{Measurable Functions}
 \begin{defn}[Characteristic Function]
 	A characteristic function of a set $E$ is defined by 
@@ -467,6 +526,12 @@ $$ \int f_n \rightarrow \int f,\ as\ n \rightarrow \infty. $$
 	$$ \int_{[a, b]}^\calR f(x) dx  = \int_{[a, b]}^\calL f(x) dx ,$$
 	where the integral on the left-hand side is the standard Riemann integral, and that on the right-hand side is the Lebesgue integral. Note that if $f$ is Riemann integrable, then $f$ is bounded.
 \end{thm}
+
+\begin{defn}[Lebesgue Integral for Non-negative Functions]
+	For non-negative functions $f$ we define its (extended) Lebesgue integral by
+	$$\int f(x) dx = \sup_{g} \int g(x) dx$$
+	where the supremum is taken over all measurable functions $g$ such that	$0 \leq g \leq f$ , and where $g$ is bounded and supported on a set of finite measure. If $\int f(x) dx < \infty$ then $f$ is said to be Lebesgue integrable or simply integrable.
+\end{defn}
 
 
 \end{document}
