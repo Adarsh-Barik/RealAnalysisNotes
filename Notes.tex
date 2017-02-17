@@ -400,6 +400,11 @@
 \begin{property}
 	Suppose $\set{f_n}_{n=1}^\infty$ is a sequence of measurable functions. Then $$\sup_n f_n(x), \inf_n f_n(x), \limsup_{n \rightarrow \infty} f_n(x), \liminf_{n \rightarrow \infty} f_n(x)  $$ are measurable.
 \end{property}
+
+\begin{remark}
+	$\liminf$ is basically $\inf$ of limit points and likewise $\limsup$ is $\sup$ of limit points. If there is just one limit point and limit exists then $\limsup$ and $\liminf$ are equal. Mathematically, $\liminf_{n \rightarrow \infty} f_n= \lim_{n \rightarrow \infty} \inf_{k \geq n} f_k$ and  $\limsup_{n \rightarrow \infty} f_n= \lim_{n \rightarrow \infty} \sup_{k \geq n} f_k$
+\end{remark}
+
 \begin{property}
 	Suppose $\set{f_n}_{n=1}^\infty$ is a sequence of measurable functions. Then $$\lim_{n \rightarrow \infty} f_n(x) = f(x) $$ then $f$ is measurable.
 \end{property}
@@ -533,5 +538,25 @@ $$ \int f_n \rightarrow \int f,\ as\ n \rightarrow \infty. $$
 	where the supremum is taken over all measurable functions $g$ such that	$0 \leq g \leq f$ , and where $g$ is bounded and supported on a set of finite measure. If $\int f(x) dx < \infty$ then $f$ is said to be Lebesgue integrable or simply integrable.
 \end{defn}
 
+\begin{property}
+	The integral of non-negative measurable functions enjoys the following properties:
+	\begin{itemize}
+		\item Linearity. If $f, g \geq 0$, and $a, b$ are positive real numbers, then $\int (a f + b g) = a \int f + b \int g$.
+		\item Additivity. If $E$ and $F$ are disjoint subsets of $\reals^d$ , and $f \geq 0$, then $\int_{E \union F} f = \int_E f + \int_F f $.
+		\item Monotonicity. If $0 \leq f \leq g$, then $\int f \leq \int g$.
+		\item If $g$ is integrable and $0 \leq f \leq g$, then $f$ is integrable.
+		\item If $f$ is integrable, then $f (x) < \infty$ for almost every $x$.
+		\item If $f = 0$, then $f (x) = 0$ for almost every $x$.
+	\end{itemize}
+\end{property}
+
+\begin{lemma}[Fatou]
+	Suppose $\set{f_n}$ is a sequence of measurable functions with $f_n \geq 0$. If $\lim_{n \rightarrow \infty} f_n (x) = f (x)$ for a.e. $x$, then 
+	$$ \int f \leq \liminf_{n \rightarrow \infty} \int f_n $$
+\end{lemma}
+
+\begin{cor}
+	Suppose $f$ is a non-negative measurable function, and $\set{f_n}$ a sequence of non-negative measurable functions with $f_n (x) \leq f(x)$ and $f_n (x) \rightarrow f (x)$ for almost every $x$. Then $\lim_{n \rightarrow \infty} \int f_n = \int f$.
+\end{cor}
 
 \end{document}
