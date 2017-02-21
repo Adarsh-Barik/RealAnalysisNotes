@@ -559,4 +559,42 @@ $$ \int f_n \rightarrow \int f,\ as\ n \rightarrow \infty. $$
 	Suppose $f$ is a non-negative measurable function, and $\set{f_n}$ a sequence of non-negative measurable functions with $f_n (x) \leq f(x)$ and $f_n (x) \rightarrow f (x)$ for almost every $x$. Then $\lim_{n \rightarrow \infty} \int f_n = \int f$.
 \end{cor}
 
+\begin{defn}[$\bf f_n \nearrow f$ and $\bf f_n \searrow f$]
+	we shall write $fn \nearrow f$	whenever $\set{f_n}_{n=1}^{\infty}$ is a sequence of measurable functions that satisfies $ f_n(x) \leq f_{n+1}(x)$ a.e $x$, all $n \geq 1$ and $\lim_{n \rightarrow \infty} f_n(x) = f(x)$ a.e $x$. Similarly, we write $fn \searrow f$	whenever $\set{f_n}_{n=1}^{\infty}$ is a sequence of measurable functions that satisfies $ f_n(x) \geq f_{n+1}(x)$ a.e $x$, all $n \geq 1$ and $\lim_{n \rightarrow \infty} f_n(x) = f(x)$ a.e $x$.
+\end{defn}
+
+\begin{thm}[Monotone Convergence Theorem]
+	Suppose $\set{f_n}$ is a sequence of non-negative measurable functions with $ f_n \nearrow f$. Then $\lim_{n \rightarrow \infty} \int f_n = \int f$.
+\end{thm}
+
+\begin{cor}
+	Consider a series $ \sum_{k=1}^{\infty} a_k(x)$, where $a_k(x) \geq 0$ is measurable for every $k \geq 1$. Then, $\int \sum_{k=1}^{\infty} a_k(x) dx  = \sum_{k=1}^{\infty} \int a_k(x) dx $. If $\sum_{k=1}^{\infty} \int a_k(x) dx$ is finite, then the series $ \sum_{k=1}^{\infty} a_k(x)$ converges for a.e. $x$.
+\end{cor}
+
+\begin{defn}[Lebesgue Integral for Any Real Valued Function]
+	If $f$ is any real-valued measurable function on $\reals^d$, we say that $f$ is 	Lebesgue integrable (or just integrable) if the non-negative measurable function $|f|$ is integrable in the sense of the previous definitions. Let $f$ be Lebesgue integral and $f^+(x) = \max(f(x), 0)$ , $f^-(x) = \max(-f(x), 0)$, so that $f^+$ and $f^-$ are non-negative and $f = f^+ - f^-$. Since $f^{\pm}  \leq |f|$, both functions $f^+$ and $f^-$ are integrable whenever $f$ is, and we then define the Lebesgue integral of $f$ by,
+	$\int f = \int f^+ - \int f^-$.
+\end{defn}
+
+\begin{property}
+	If $f = f_1 - f_2$ such that $f_1, f_2 \geq 0$ then $\int f = \int f_1 - \int f_2$.
+\end{property}
+
+\begin{prop}
+	The integral of Lebesgue integrable functions is linear, additive, monotonic, and satisfies the triangle inequality. 
+\end{prop}
+
+\begin{prop}
+	Suppose $f$ is integrable on $\reals^d$. Then for every $\epsilon > 0$:
+	\begin{enumerate}
+		\item  There exists a set of finite measure $B$ (a ball, for example) such
+		that $\int_{B^c} |f| < \epsilon$.
+		\item There is a $\delta > 0$ such that $\int_E |f| < \epsilon$ whenever $m(E) < \delta$. This is known as absolute continuity.
+	\end{enumerate}
+\end{prop}
+
+\begin{thm}[Dominated Convergence Theorem]
+	Suppose $\set{f_n}$ is a sequence of measurable functions such that $f_n(x) \rightarrow f(x)$ a.e. $x$, as $n$ tends to infinity. If $|f_n(x)|  \leq g(x)$, where $g$ is integrable, then $ |f_n - f |  \rightarrow 0$ as  $n \rightarrow \infty$ and consequently $ \int f_n \rightarrow \int	f$ as $n \rightarrow \infty$.
+\end{thm}
+
 \end{document}
