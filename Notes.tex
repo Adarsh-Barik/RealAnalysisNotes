@@ -458,7 +458,12 @@
 	and such that $f|_{F_\epsilon}$ is continuous.
 \end{thm}
 
+
+
 \chapter{INTEGRATION THEORY}
+
+\section{The Lebesgue Integral: Basic Properties and Convergence Theorems}
+
 \begin{defn}[Canonical Form of Simple Function]
 	The canonical form of a simple function $\varphi$ is the unique decomposition as below,
 	$$  \varphi = \sum_{k=1}^{M} c_k \chi_{F_k}  $$
@@ -595,6 +600,55 @@ $$ \int f_n \rightarrow \int f,\ as\ n \rightarrow \infty. $$
 
 \begin{thm}[Dominated Convergence Theorem]
 	Suppose $\set{f_n}$ is a sequence of measurable functions such that $f_n(x) \rightarrow f(x)$ a.e. $x$, as $n$ tends to infinity. If $|f_n(x)|  \leq g(x)$, where $g$ is integrable, then $ |f_n - f |  \rightarrow 0$ as  $n \rightarrow \infty$ and consequently $ \int f_n \rightarrow \int	f$ as $n \rightarrow \infty$.
+\end{thm}
+
+\begin{defn}[Complex Valued Function]
+	If $f$ is a complex-valued function on $\reals^d$, we may write it as $f(x) = u(x) + i v(x)$ where $u$ and $v$ are real-valued functions called the real and imaginary	parts of $f$, respectively.
+\end{defn}
+\begin{property}
+	The function $f$ is measurable if and only if both $u$ and $v$ are measurable.
+\end{property}
+
+\begin{defn}[Lebesgue Integrable Complex Valued Functions]
+	We say that $f$ is Lebesgue integrable if the function $|f(x)| = (u(x)^2 + v(x)^2)^{\frac{1}{2}}$ (which is non-negative) is Lebesgue integrable in the sense defined previously. The Lebesgue integral of $f$ is defined by $\int f(x) dx = \int u(x) dx + i \int v(x) dx$.
+\end{defn}
+\begin{property}
+	$|u(x)| \leq |f(x)|,\ |v(x)| \leq |f(x)|,\ |f(x)| \leq |u(x)| + |v(x)|$
+\end{property}
+\begin{property}
+	If $f$ and $g$ are integrable then so is $f + g$. Also, if $a \in \mb{C}$ and if $f$ is integrable then so is $af$.
+\end{property}
+
+\section{The Space $L^1$ of Integrable Functions}
+
+\begin{defn}[Norm ($\bf L^1$-Norm) of $\bf f$]
+	For any integrable function $f$ on $\reals^d$ we define the norm of $f$, $\| f \| = \| f \|_{L^1} = \| f \|_{L^1(\reals^d)} = \int_{\reals^d} |f(x)| dx$.
+\end{defn}
+
+\begin{defn}[$\bf L^1(\reals^d)$]
+	$L^1(\reals^d)$ is the space of equivalence classes of integrable functions, where we define two functions to be equivalent if they agree almost everywhere.
+\end{defn}
+\begin{property}
+	$L^1(\reals^d)$ is a vector space.
+\end{property}
+
+\begin{prop}
+	Suppose $f$ and $g$ are two functions in $L^1(\reals^d)$,
+	\begin{itemize}
+		\item $\| a f \|_{L^1(\reals^d)} = |a| \| f \|_{L^1(\reals^d)}, \forall a \in \mb{C} $
+		\item $\| f + g \|_{L^1(\reals^d)} \leq \|  f \|_{L^1(\reals^d)} + \|  g \|_{L^1(\reals^d)} $
+		\item $\| f \|_{L^1(\reals^d)} = 0 $ if and only if $f = 0$, a.e.
+		\item $d(f, g) = \| f - g \|_{L^1(\reals^d)}$ defines a metric on $L^1(\reals^d)$ i.e. $d(f, g) \geq 0$, $d(f, g) = d(g, f)$ and $d(f, g) \leq d(f, h) + d(h, g) \forall f, g, h \in L^1(\reals^d)$
+	\end{itemize}
+\end{prop}
+
+\begin{defn}[Complete Space]
+	A space $V$ with a metric $d$ is said to be complete if for every Cauchy
+	sequence $\set{x_k}$ in $V$ (that is, $\forall \epsilon > 0, \exists K_\epsilon$ such that $d(x_r, x_s) < \epsilon \forall r, s \geq K_\epsilon$) there exists $x \in V$ such that $\lim_{k \rightarrow \infty} x_k = x$ in the sense that $d(x_k, x) \rightarrow 0$ as $k \rightarrow \infty$.
+\end{defn}
+
+\begin{thm}[Riesz-Fischer Theorem]
+	The vector space $L^1$ is complete in its metric.
 \end{thm}
 
 \end{document}
