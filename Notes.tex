@@ -652,7 +652,41 @@ $$ \int f_n \rightarrow \int f,\ as\ n \rightarrow \infty. $$
 \end{defn}
 
 \begin{thm}[Riesz-Fischer Theorem]
-	The vector space $L^1$ is complete in its metric.
+	The vector space $L^1$ is complete in its metric. Suppose $\set{f_n}$ is a Cauchy sequence in the norm, so that $\| f_n - f_m \| \rightarrow 0$ as $n, m \rightarrow \infty$. The plan of the proof is to extract a subsequence of $\set{f_n}$ that converges to $f$, both pointwise almost everywhere and in the norm.
 \end{thm}
+
+\begin{cor}
+	If $\set{f_n}_{n=1}^{\infty}$ converges to $f$ in $L^1$, then there exists a subsequence $\set{f_{n_k}}$ such that $f_{n_k} \rightarrow f(x)$ a.e. $x$.
+\end{cor}
+
+\begin{defn}[Dense in $\bf L^1$]
+	We say that a family $\calG$ of integrable functions is dense in $L^1$ if for any
+	$f \in L^1$ and $\epsilon > 0$, there exists $g \in \calG$ so that $\|f - g\|_{L^1} <\epsilon $.
+\end{defn}
+
+\begin{thm}
+	The following families of functions are dense in $L^1(\reals^d)$:
+	\begin{itemize}
+		\item The simple functions.
+		\item The step functions.
+		\item  The continuous functions of compact support.
+		\item  The continuous smooth functions of compact support.
+	\end{itemize}
+\end{thm}
+
+\begin{property}[Invariance Properties]\item
+	\begin{itemize}
+		\item Translation. Let $f_h(x) = f(x - h)$ then $\int f_h = \int f$
+		\item Dilation. $\delta^d \int f(\delta x) = \int f(x)$
+		\item Reflection. $\int f(-x) = \int f(x)$
+		\item $\int f(x-y) g(y) dy= \int f(y) g(x-y) dy$
+	\end{itemize}
+\end{property}
+
+\begin{prop}
+	Suppose $f \in L^1(\reals^d)$. Then $ \| f_h - f \|_{L^1} \rightarrow 0 $ as $h \rightarrow 0$.
+\end{prop}
+
+
 
 \end{document}
