@@ -468,6 +468,10 @@
 
 \section{The Lebesgue Integral: Basic Properties and Convergence Theorems}
 
+\begin{property}
+	By definition, all integrable functions are measurable.
+\end{property}
+
 \begin{defn}[Canonical Form of Simple Function]
 	The canonical form of a simple function $\varphi$ is the unique decomposition as below,
 	$$  \varphi = \sum_{k=1}^{M} c_k \chi_{F_k}  $$
@@ -687,6 +691,122 @@ $$ \int f_n \rightarrow \int f,\ as\ n \rightarrow \infty. $$
 	Suppose $f \in L^1(\reals^d)$. Then $ \| f_h - f \|_{L^1} \rightarrow 0 $ as $h \rightarrow 0$.
 \end{prop}
 
+%%
+\section{Fubini's Theorem}
+\begin{property}
+	We may write $\reals^d$ as a product $\reals^d = \reals^{d_1} \times \reals^{d_2}$ where $d_1 + d_2 = d$ and $d_1, d_2 \geq 1$.
+\end{property}
 
+\begin{defn}[Slice of a Function]
+	If $f$ is a function in	$\reals^{d_1} \times \reals^{d_2}$ , the slice of $f$ corresponding to $y \in \reals^{d_2}$ is the function $f^y$ of the $x \in \reals^{d_1}$ variable, given by $f^y(x) = f(x, y)$. Similarly, the slice of $f$ for a fixed $x \in \reals^{d_1}$ is $f_x(y) = f(x, y)$.
+\end{defn}
+
+\begin{defn}[Slice of a Set]
+	In the case of a set $E \in \reals^{d_1} \times \reals^{d_2}$ we define its slices by
+	$E^y = \set{x \in \reals^{d_1} : (x, y) \in E}$ and $E_x = \set{y \in \reals^{d_2} : (x, y) \in E}$.
+\end{defn}
+
+\begin{thm}[Fubini's Theorem]
+	Suppose $f(x, y)$ is integrable on $\reals^{d_1} \times \reals^{d_2}$. Then for almost every $y \in \reals^{d_2}$:
+	\begin{enumerate}
+		\item The slice $f^y$ is integrable on $\reals^{d_1}$.
+		\item The function defined by $\int_{\reals^{d_1}} f^y(x) dx$ is integrable on $\reals^{d_2}$. Moreover,
+		\item $\int_{\reals^{d_2}} \big( \int_{\reals^{d_1}} f(x, y) dx \big) dy = \int_{\reals^d} f $.
+	\end{enumerate}
+\end{thm}
+
+\begin{property}
+	The theorem is symmetric in $x$ and $y$, hence the order can be interchanged.
+\end{property}
+
+\begin{proof}[Proof of Fubini's theorem]
+	We begin by letting $\calF$ denote the set of integrable functions on $\reals^d$ which satisfy all three conclusions in the theorem, and set out to prove that $L^1(\reals^d) \in \calF$.
+	\begin{property}
+		Any finite linear combination of functions in $\calF$ also belongs to $\calF$.
+	\end{property}
+	\begin{property}
+		Suppose $\set{f_k}$ is a sequence of measurable functions in $\calF$ so that $f_k \nearrow f$ or $f_k \searrow f$, where $f$ is integrable (on $\reals^d$). Then $f \in \calF$.
+	\end{property}
+	\begin{property}
+		Any characteristic function of a set $E$ that is a $G_\delta$ and of finite measure belongs to $\calF$.
+	\end{property}
+	\begin{property}
+		If $E$ has measure $0$, then $\chi_E$ belongs to $\calF$.
+	\end{property}
+	\begin{property}
+		If $E$ is any measurable subset of $\reals^d$ with finite measure, then $\chi_E$ belongs to $\calF$.
+	\end{property}
+	\begin{property}
+		If $f$ is integrable, then $f \in F$.
+	\end{property}
+\end{proof}
+
+\begin{thm}
+	Suppose $f(x, y)$ is a non-negative measurable function on $\reals^{d_1} \times \reals^{d_2}$ . Then for almost every $y \in \reals^{d_2}$:
+	\begin{enumerate}
+		\item The slice $f^y$ is measurable on $\reals^{d_1}$ .
+		\item The function defined by $\int_{\reals^{d_1}} f^y(x) dx$ is measurable on $\reals^{d_2}$ .
+		\item $\int_{\reals^{d_2}} \big( \int_{\reals^{d_1}} f(x, y) dx  \big) dy = \int_{\reals^d} f(x,y) dxdy$ in the extended sense.
+	\end{enumerate}	
+\end{thm}
+
+\begin{cor}
+	If $E$ is a measurable set in $\reals^{d_1} \times \reals^{d_2}$, then for almost every $y \in \reals^{d_2}$ the slice $E^y = \set{x \in \reals^{d_1}: (x, y) \in E}$ is a measurable subset of $\reals^{d_1}$ . Moreover $m(E^y)$ is a measurable function
+	of $y$ and $m(E) = \int_{\reals^{d_2}} m(E^y) dy$.
+\end{cor}
+
+\begin{prop}
+	If $E = E_1 \times E_2$ is a measurable subset of $\reals^d$, and $m_*(E2) > 0$, then $E_1$ is measurable.
+\end{prop}
+
+\begin{lemma}
+	If $E_1 \subset \reals^{d_1}$ and $E_2 \subset \reals^{d_2}$, then $m_*(E_1 \times E_2) \leq m_*(E_1)m_*(E_2)$, with the understanding that if one of the sets $E_j$ has exterior measure zero, then $m_*(E_1 \times E_2) = 0$.
+\end{lemma}
+
+\begin{prop}
+	Suppose $E_1$ and $E_2$ are measurable subsets of $\reals^{d_1}$ and $\reals^{d_2}$, respectively. Then $E = E_1 \times E_2$ is a measurable subset of $\reals^d$. Moreover, $m(E) = m(E_1)m(E_2)$ with the understanding that if one of the sets $E_j$ has measure zero, then $m(E) = 0$.
+\end{prop}
+
+\begin{cor}
+	Suppose $f$ is a measurable function on $\reals^{d_1}$. Then the function $\tilde{f}$ defined by $\tilde{f}(x, y) = f(x)$ is measurable on $\reals^{d_1} \times \reals^{d_2}$.
+\end{cor}
+
+\begin{cor}
+	Suppose $f(x)$ is a non-negative function on $\reals^d$, and let $\calA = \set{(x, y) \in \reals^d \times \reals : 0 \leq y \leq f(x)}$. Then:
+	\begin{enumerate}
+		\item $f$ is measurable on $\reals^d$ if and only if $\calA$ is measurable in $\reals^{d + 1}$.
+		\item If the conditions in 1 hold, then $\int_{\reals^d} f(x) dx = m(\calA)$
+	\end{enumerate}
+\end{cor}
+
+\begin{prop}
+	If $f$ is a measurable function on $\reals^d$, then the function $\tilde{f}(x, y) = f(x - y)$ is measurable on $\reals^d \times \reals^d$.
+\end{prop}
+
+\section{A Fourier Inversion Formula}
+
+\begin{defn}[Fourier Inversion]
+	\begin{align}
+	\label{eq:fourier}
+	\hat{f}(\xi) &= \int_{\reals^d} f(x) e^{-2 \pi i x . \xi} dx\\
+	f(x) &= \int_{\reals^d} \hat{f}(\xi) e^{2 \pi i x . \xi} d\xi  
+	\end{align}
+\end{defn}
+\begin{prop}
+	Suppose $f \in L^1(\reals^d)$. Then $\hat{f}$ defined by~\eqref{eq:fourier} is continuous and bounded on $\reals^d$.
+\end{prop}
+
+\begin{thm}
+	Suppose $f \in L^1(\reals^d)$ and assume also that $ \hat{f} \in L^1(\reals^d)$.
+	Then the inversion formula~\eqref{eq:fourier} holds for almost every $x$.
+\end{thm}
+
+\begin{cor}
+	Suppose $\hat{f}(\xi) = 0$ for all $\xi$. Then $f = 0$ a.e.
+\end{cor}
+
+\begin{lemma}
+	Suppose $f$ and $g$ belong to $L^1(\reals^d)$. Then $\int_{\reals^d} \hat{f}(\xi) g(\xi) d\xi = \int_{\reals^d} f(y) \hat{g}(y) dy.$
+\end{lemma}
 
 \end{document}
